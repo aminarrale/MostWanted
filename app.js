@@ -151,6 +151,20 @@ function displayPerson(person) {
 }
 // End of displayPerson()
 
+
+// This function will be useful for finding a persons family properties
+function findPersonFamily(person) {
+    let personFamily = `Spouse: ${person.currentSpouse}\n`;
+    personFamily += `Parents: ${person.parents}\n`;
+    alert(personFamily);
+}
+// End of findPersonFamily()
+
+
+
+
+
+
 /**
  * This function's purpose is twofold:
  * First, to generate a prompt with the value passed in to the question parameter.
