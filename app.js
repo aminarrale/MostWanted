@@ -59,7 +59,7 @@ function mainMenu(person, people) {
         return app(people);
     }
     let displayOption = prompt(
-        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
+        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', 'descendants' or 'test?\nType the option you want or type 'restart' or 'quit'.`
     );
     // Routes our application based on the user's input
     switch (displayOption) {
@@ -88,6 +88,10 @@ function mainMenu(person, people) {
         case "quit":
             // Stop application execution
             return;
+
+        case "test":
+            
+            break;
         default:
             // Prompt user again. Another instance of recursion
             return mainMenu(person, people);
@@ -156,12 +160,13 @@ function displayPerson(person) {
 function findPersonFamily(person) {
     let personFamily = `Spouse: ${person.currentSpouse}\n`;
     personFamily += `Parents: ${person.parents}\n`;
+    
     alert(personFamily);
 }
 // End of findPersonFamily()
-
-
-
+function findPersonDescendants(person, people, children=[], idx=0) {
+    
+}
 
 
 
