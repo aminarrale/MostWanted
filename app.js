@@ -291,6 +291,14 @@ function searchByTraits(people){
                 return searchByTraits(people);
             default:
                 return app(people);
+            case 'weight':
+                searchResults = getWeight(searchResults)
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+            else;
+            return searchByTraits(people);
             }
         }
 
@@ -325,6 +333,17 @@ function getHeight(people){
     )
     let searchResults = people.filter(function(people){
         if(people.height === searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+}
+function getWeight(people){
+    let searchPrompt = promptFor(
+        'Enter weight:', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.weight === searchPrompt){
             return true;
         }
     })
