@@ -75,9 +75,6 @@ function mainMenu(person, people) {
            let personFamily = findPersonFamily(person[0], people);
            alert(personFamily);
            break;
-
-
-            break;
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
@@ -91,10 +88,6 @@ function mainMenu(person, people) {
         case "quit":
             // Stop application execution
             return;
-
-        case "test":
-            
-            break;
         default:
             // Prompt user again. Another instance of recursion
             return mainMenu(person, people);
@@ -263,7 +256,52 @@ function findPersonDescendants(person, people){
 }
 // End of findPersonDescendants
 
+// this function will be useful for searching by traits
+function searchByTraits(people){
+    let searchResults = people;
+    while(searchResults.length === 0 || searchResults.length > 1){
+        let searchTrait = promptFor(
+            'What trait do you want to search by: gender, dob, height, weight, eye color, occupation or return to main menu', chars);
+        switch(searchTrait){
+            case 'main menu':
+                return app(people);
+            case 'gender':
+                searchResults = getGender(searchResults)
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
+            default:
+                return app(people);
+            }
+        }
+        return searchResults;
+    }
+    
+function getGender(people){
+    let searchPrompt = promptFor(
+        'Male or Female:', chars)
+    
+    let searchResults = people.filter(function(people){
+        if(people.gender === searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+}
 
+function getResults(searchResults){
+    let display = `Name: ${searchResults[0].firstName} ${searchResults[0].lastName}\n`;
+    for(let i = 1;i < searchResults.length;i++){
+        display += `Name: ${searchResults[i].firstName} ${searchResults[i].lastName}\n`;
+
+    }
+    return display;
+}
+
+    
 
 /**
  * This function's purpose is twofold:
