@@ -297,6 +297,14 @@ function searchByTraits(people){
                 }
                 else;   
                 return searchByTraits(people);
+            case 'eye color':
+                searchResults = getEyeColor(searchResults)
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
             default:
                 return app(people);
             
@@ -346,6 +354,17 @@ function getWeight(people){
     )
     let searchResults = people.filter(function(people){
         if(people.weight === searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+}
+function getEyeColor(people){
+    let searchPrompt = promptFor(
+        'Choose an eye color :  blue, brown, black, green, hazel', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.eyeColor === searchPrompt){
             return true;
         }
     })
