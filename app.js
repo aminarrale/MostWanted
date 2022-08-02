@@ -273,19 +273,39 @@ function searchByTraits(people){
                 }
                 else;
                 return searchByTraits(people);
+            case 'dob':
+                searchResults = getDOB(searchResults)
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
             default:
                 return app(people);
             }
         }
+
         return searchResults;
     }
     
 function getGender(people){
     let searchPrompt = promptFor(
-        'Male or Female:', chars)
+        'male or female:', chars)
     
     let searchResults = people.filter(function(people){
         if(people.gender === searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+}
+function getDOB(people){
+    let searchPrompt = promptFor(
+        'Enter the date of birth:', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.dob === searchPrompt){
             return true;
         }
     })
