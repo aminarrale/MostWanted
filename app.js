@@ -281,6 +281,14 @@ function searchByTraits(people){
                 }
                 else;
                 return searchByTraits(people);
+            case 'height':
+                searchResults = getHeight(searchResults)
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
             default:
                 return app(people);
             }
@@ -302,10 +310,21 @@ function getGender(people){
 }
 function getDOB(people){
     let searchPrompt = promptFor(
-        'Enter the date of birth:', chars
+        'Enter dob:', chars
     )
     let searchResults = people.filter(function(people){
         if(people.dob === searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+}
+function getHeight(people){
+    let searchPrompt = promptFor(
+        'Enter height:', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.height === searchPrompt){
             return true;
         }
     })
