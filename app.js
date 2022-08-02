@@ -59,7 +59,7 @@ function mainMenu(person, people) {
         return app(people);
     }
     let displayOption = prompt(
-        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', 'descendants' or 'test?\nType the option you want or type 'restart' or 'quit'.`
+        `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', 'descendants' ?\nType the option you want or type 'restart' or 'quit'.`
     );
     // Routes our application based on the user's input
     switch (displayOption) {
@@ -72,8 +72,11 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people);
-            alert(personFamily);
+           let personFamily = findPersonFamily(person[0], people);
+           alert(personFamily);
+           break;
+
+
             break;
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
@@ -157,16 +160,68 @@ function displayPerson(person) {
 
 
 // This function will be useful for finding a persons family properties
-function findPersonFamily(person) {
-    let personFamily = `Spouse: ${person.currentSpouse}\n`;
-    personFamily += `Parents: ${person.parents}\n`;
+function findPersonFamily(person, people){
+    let familyInfo = ''
+    let foundSpouse = people.filter(function(people){
+        if(person.currentSpouse === people.id){
+            return true;
+        }
+    })
+    if(foundSpouse.length === 0){
+    familyInfo += "No Spouse \n";
+    }
+    else{
+    familyInfo += `Spouse: ${foundSpouse[0].firstName}  ${foundSpouse[0].lastName}\n`;
+    }
+    let foundParents = people.filter(function(people){
+        for(let i = 0; i < person.parents.length; i++){
+            if(person.parents[i] === people.id){
+                return true;
+
+        }
+    }})
+        if(foundParents.length === 0){
+        familyInfo += "Has no parents \n";
+        }
     
-    alert(personFamily);
+
+        else{
+            for(let i = 0; i < foundParents.length; i++){
+            familyInfo += `Parent: ${foundParents[i].firstName}  ${foundParents[i].lastName}\n`;
+        }}
+
+
+    let foundSiblings = people.filter(function(people){
+        for(let i = 0; i < person.parents.length; i++){
+            for(let j = 0; j < person.parents.length; j++){
+                if(person.parents[j] === people.parents[i]){
+
+                    if(person.id === people.id){
+                        return false;
+                    }
+                    else{
+                        return true;
+                    } 
+                }
+            }
+        }
+    })
+    if(foundSiblings.length === 0){
+    familyInfo += "Has no siblings \n";
+    }
+    else{
+        for(let i = 0; i < foundSiblings.length; i++){
+            familyInfo += `Sibling: ${foundSiblings[i].firstName}  ${foundSiblings[i].lastName}\n`;
+        }}
+    return familyInfo
 }
+
+
+
+
+
 // End of findPersonFamily()
-function findPersonDescendants(person, people, children=[], idx=0) {
-    
-}
+
 
 
 
