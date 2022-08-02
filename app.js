@@ -289,16 +289,18 @@ function searchByTraits(people){
                 }
                 else;
                 return searchByTraits(people);
-            default:
-                return app(people);
             case 'weight':
                 searchResults = getWeight(searchResults)
                 if(searchResults.length != 0){
                     alert(getResults(searchResults))
                     break;
                 }
-            else;
-            return searchByTraits(people);
+                else;   
+                return searchByTraits(people);
+            default:
+                return app(people);
+            
+            
             }
         }
 
