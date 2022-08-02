@@ -162,6 +162,7 @@ function displayPerson(person) {
 // This function will be useful for finding a persons family properties
 function findPersonFamily(person, people){
     let familyInfo = ''
+    // Spouse
     let foundSpouse = people.filter(function(people){
         if(person.currentSpouse === people.id){
             return true;
@@ -173,6 +174,7 @@ function findPersonFamily(person, people){
     else{
     familyInfo += `Spouse: ${foundSpouse[0].firstName}  ${foundSpouse[0].lastName}\n`;
     }
+    // parents
     let foundParents = people.filter(function(people){
         for(let i = 0; i < person.parents.length; i++){
             if(person.parents[i] === people.id){
@@ -191,7 +193,8 @@ function findPersonFamily(person, people){
         }}
 
 
-    let foundSiblings = people.filter(function(people){
+    // siblings
+        let foundSiblings = people.filter(function(people){
         for(let i = 0; i < person.parents.length; i++){
             for(let j = 0; j < person.parents.length; j++){
                 if(person.parents[j] === people.parents[i]){
@@ -215,13 +218,50 @@ function findPersonFamily(person, people){
         }}
     return familyInfo
 }
-
-
-
-
-
 // End of findPersonFamily()
 
+// This function will be useful for finding a person's descendants properties
+function findPersonDescendants(person, people){
+    let foundGrandChildrencopy = [];
+    let descendantsCopy = people
+    let foundChildren = people.filter(function(people){
+        for(let i = 0; i < people.parents.length; i++){
+            if(person.id == people.parents[i]){
+                let foundChildrenCopy = people
+                let foundGrandChildren = descendantsCopy.filter(function(people){
+                    for(let j = 0; j < people.parents.length; j++){
+                        if(foundChildrenCopy.id == people.parents[j]){
+                            foundGrandChildrencopy.push(people);
+                            return true;
+                        }
+                
+        }  
+         
+    })
+    return true;
+    }}
+
+    })
+    let personDescendants = '';
+    if(foundChildren.length === 0){
+        personDescendants += "Has no children\n";
+    }
+    else{
+        personDescendants += `Children: ${foundChildren[0].firstName}  ${foundChildren[0].lastName}\n`;
+        for(let i = 1; i <foundChildren.length; i++){
+            personDescendants += `Children: ${foundChildren[i].firstName}  ${foundChildren[i].lastName}\n`;     
+            }}
+    if(foundGrandChildrencopy.length === 0){
+            personDescendants += "Has no Grandchildren";
+        }
+    else{
+        for(let i = 0; i <foundGrandChildrencopy.length; i++){
+            personDescendants += `Grandchildren: ${foundGrandChildrencopy[i].firstName}  ${foundGrandChildrencopy[i].lastName}\n`;     
+        }}
+
+    return personDescendants;
+}
+// End of findPersonDescendants
 
 
 
