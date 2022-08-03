@@ -314,10 +314,14 @@ function searchByTraits(people){
 
         return searchResults;
     }
+
     
+
+// Function that gets gender and is used with searchByTrait
+
 function getGender(people){
     let searchPrompt = promptFor(
-        'male or female:', chars)
+        'Choose male or female:', chars)
     
     let searchResults = people.filter(function(people){
         if(people.gender === searchPrompt){
@@ -326,6 +330,9 @@ function getGender(people){
     })
     return searchResults;
 }
+
+// Function that gets dob and is used with searchByTrait
+
 function getDOB(people){
     let searchPrompt = promptFor(
         'Enter dob:', chars
@@ -337,6 +344,7 @@ function getDOB(people){
     })
     return searchResults;
 }
+// Function that gets height and is used with searchByTrait
 function getHeight(people){
     let searchPrompt = promptFor(
         'Enter height:', chars
@@ -348,6 +356,9 @@ function getHeight(people){
     })
     return searchResults;
 }
+
+// Function that gets weight and is used with searchByTrait
+
 function getWeight(people){
     let searchPrompt = promptFor(
         'Enter weight:', chars
@@ -359,6 +370,9 @@ function getWeight(people){
     })
     return searchResults;
 }
+
+// Function that gets height and is used with searchByTrait
+
 function getEyeColor(people){
     let searchPrompt = promptFor(
         'Choose an eye color :  blue, brown, black, green, hazel', chars
@@ -370,6 +384,8 @@ function getEyeColor(people){
     })
     return searchResults;
 }
+
+// Function that gets results
 
 function getResults(searchResults){
     let display = `Name: ${searchResults[0].firstName} ${searchResults[0].lastName}\n`;
