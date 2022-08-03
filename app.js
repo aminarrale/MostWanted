@@ -315,6 +315,8 @@ function searchByTraits(people){
         return searchResults;
     }
 
+
+// End of searchByTraits Function
     
 
 // Function that gets gender and is used with searchByTrait
